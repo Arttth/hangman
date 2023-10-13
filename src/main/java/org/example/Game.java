@@ -6,12 +6,13 @@ import java.util.Random;
 public class Game {
     // store all words
     HashSet<String> words = new HashSet<>();
+    // guessable word
     Word currentWord;
     // hangman's stage before losing
     int stage;
 
     Game() {
-
+        // reading words from file
         WordFileReader.getWords(words);
         newGameInit();
     }
@@ -53,11 +54,12 @@ public class Game {
     // main loop of game
     void play() {
         while (true) {
+            // render menu interface
             int menuItem = ConsoleRenderer.renderMenu();
             if (menuItem == 2) break;
             else if (menuItem == 1) {
                 while (true) {
-                    System.out.println("");
+                    // render game interface
                     ConsoleRenderer.renderHanagman(stage);
                     ConsoleRenderer.renderWordHolder(currentWord);
                     if (stage >= 6) {
@@ -68,6 +70,7 @@ public class Game {
                         System.out.println("Вы выйграли!!!");
                         break;
                     }
+                    // input char and checking it
                     String in = ConsoleRenderer.inputLetter();
                     if (in.length() != 1) {
                         stage++;
@@ -78,9 +81,11 @@ public class Game {
                         stage++;
                     }
                 }
+                // initializing new game after break
                 newGameInit();
             }
         }
+        // closing console renderer
         ConsoleRenderer.closeConsoleRenderer();
     }
 

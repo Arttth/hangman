@@ -7,6 +7,7 @@ public class ConsoleRenderer {
     public static Scanner scanner = new Scanner(System.in);
 
     static void renderHanagman(int stage) {
+        System.out.println("");
         if (stage == 0) {
             System.out.println("  ( )====");
             System.out.println("   |    |");
